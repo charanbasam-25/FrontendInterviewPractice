@@ -1,0 +1,181 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ul, li{
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+.meme-grid{
+  display: grid;
+  grid-template-columns: repeat( 4, 1fr);
+  grid-gap: 12px;
+}
+
+.meme-box{
+  border: 1px solid #fff;
+  border-radius: 6px;
+  padding: 10px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  text-align: start;
+}
+
+.meme-box .heading{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.meme-box .para{
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.image-slider{
+  width:600px;
+  margin:0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-slider img{
+  display: block;
+  width: 100%;
+}
+.prev-button,
+.next-button{
+  /* position: absolute;
+  top:50%;
+  transform: translateY(-50%); */
+    position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  
+}
+.next-button{
+  right: 10px;
+}
+
+.prev-button{
+  left: 10px;
+}
+.dashboard{
+  max-width: 1100px;
+  margin:0 auto;
+}
+
+tr{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
+td{
+  width: 100px;
+}
+.page-num.active{
+  background-color: lightgray;
+  border-radius: 50%;
+  padding: 10px;
+  color: #000;
+}
+
+
+.stop-watch, .reddit-comments, .auto-complete-container{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.auto-complete-container{
+  position: relative;
+}
+
+.search-input{
+  width: 500px;
+  height: 50px;
+  border: 1px solid #000;
+  border-radius: 50px;
+  padding: 0px 20px ;
+}
+
+.search-results{
+  position: absolute;
+  top: 100px;
+  width: 500px;
+  border: 1px solid #fff;
+}
+.search-results li p{
+  border-bottom:1px solid #fff;
+
+}
+
+
+.search-results p{
+  padding: 10px 20px;
+}
+
+.live-comments-container{
+  max-height: 800px;
+  display: flex;
+  flex-direction: column-reverse;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 800px;
+  padding: 20px;
+  overflow-y: auto;
+}
+.each-comment{
+  border-bottom: 1px solid #fff;
+  border-bottom-left-radius: 20px;
+}
+.calender-view{
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.calender-table{
+  width: 400px;
+  border-collapse: collapse;
+}
+
+.calender-table th{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.calender-table td{
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.calender-table td.current{
+  background-color: gray;
+  color: #000;
+}
+
+.calender-table td:hover{
+  background-color: lightblue;
+  color:#000;
+  cursor: pointer;
+}
