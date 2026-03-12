@@ -9,8 +9,9 @@ import AutoComplete from "./LLD/AutomComplete.js";
 import ParentCompUseMemo from "./Tapas/Performance/memoCallBackReactmemo.js";
 import DerivedState from "./Tapas/Performance/derivedState.js";
 import InputValuesDebThro from "./Tapas/InputValueDebThro.js";
-import LiveComments from "../src/LLD/LiveComments.tsx"
+import LiveComments from "../src/LLD/LiveComments.tsx";
 import CalenderView from "./LLD/CalenderView.tsx";
+import PostManUI from "./LLD/PostManUI.tsx";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         {/* <h1>Namste System Design</h1> */}
         {/* <InfiniteScroll /> */}
         {/* <ImageSlider/> */}
-        {/* <Dashboard/> */}
+        <Dashboard/>
         {/* <StopWatch/> */}
         {/* <ReddictComments/> */}
         {/* <AutoComplete/> */}
@@ -27,8 +28,8 @@ function App() {
         {/* <DerivedState /> */}
         {/* <InputValuesDebThro /> */}
         {/* <LiveComments/> */}
-        <CalenderView/>
-        
+        {/* <CalenderView/> */}
+        {/* <PostManUI /> */}
       </div>
     </>
   );

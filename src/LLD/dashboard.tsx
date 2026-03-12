@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 const api = "https://dummyjson.com/users?";
+
 function formatData(keys, data) {
-  console.log(keys, data, "data----");
-  return keys.reduce((acc, curr, index) => {
+  return keys.reduce((acc, curr) => {
     if (curr in data) {
       acc[curr] = data[curr];
     }
@@ -19,10 +19,14 @@ function Dashboard() {
   const [pageNumber, setPageNumer] = useState(1);
   const columns = ["firstName", "lastName", "age", "gender", "username"];
   const [searchData, setSearchedData] = useState([]);
+  const [order, setOrder] = useState("asc");
+
   async function FetchUsers() {
     setIsLoading(true);
     try {
-      const data = await fetch(`${api}limit=${10}&skip=${pageNumber * 10}`);
+      const data = await fetch(
+        `${api}limit=10&skip=${(pageNumber - 1) * 10}` // ✅ CHANGED (pagination fix)
+      );
       const json = await data.json();
       setUsers(json.users);
       setNumPages(Math.ceil(json.total / 10));
@@ -37,24 +41,40 @@ function Dashboard() {
     FetchUsers();
   }, [pageNumber]);
 
-  console.log(users, "user---");
-  let formatedData = users?.map((eachObj, index) => {
+  let formatedData = users?.map((eachObj) => {
     return formatData(columns, eachObj);
   });
+
   function handleSearch(e) {
-    const returnedData = formatedData.filter((eachdata, index) => {
-      return Object.entries(eachdata).some(([key, value], index) => {
-        if (
-          String(value).toLowerCase().includes(e.target.value.toLowerCase())
-        ) {
-          return true;
-        }
+    const value = e.target.value.toLowerCase();
+
+    const returnedData = formatedData.filter((eachdata) => {
+      return Object.entries(eachdata).some(([key, value2]) => {
+        return String(value2).toLowerCase().includes(value);
       });
     });
+
     setSearchedData(returnedData);
   }
 
   const displayData = searchData.length > 0 ? searchData : formatedData;
+
+  // ✅ CHANGED (Added sorting logic)
+  function handleSort(colName) {
+    const sortedData = [...displayData].sort((a, b) => {
+      if (a[colName] < b[colName]) return order === "asc" ? -1 : 1;
+      if (a[colName] > b[colName]) return order === "asc" ? 1 : -1;
+      return 0;
+    });
+
+    if (searchData.length > 0) {
+      setSearchedData(sortedData);
+    } else {
+      setUsers(sortedData);
+    }
+
+    setOrder((prev) => (prev === "asc" ? "desc" : "asc")); // ✅ CHANGED
+  }
 
   return (
     <div className="dashboard">
@@ -65,31 +85,43 @@ function Dashboard() {
           onChange={handleSearch}
         />
       </div>
+
       <table>
         <thead>
           <tr>
-            {columns.map((eachCol, index) => {
-              return <th>{eachCol}</th>;
+            {columns.map((eachCol) => {
+              return (
+                <th
+                  key={eachCol} // ✅ CHANGED (React key)
+                  onClick={() => handleSort(eachCol)}
+                >
+                  {eachCol} {order === "asc" ? "↑" : "↓"} {/* ✅ CHANGED */}
+                </th>
+              );
             })}
           </tr>
         </thead>
+
         <tbody>
           {displayData.length > 0 &&
-            displayData?.map((eachData, index) => {
+            displayData.map((eachData, index) => {
               return (
-                <tr>
-                  {columns.map((key, index) => {
-                    return <td>{eachData[key]}</td>;
+                <tr key={index}> {/* ✅ CHANGED */}
+                  {columns.map((key) => {
+                    return <td key={key}>{eachData[key]}</td>; // ✅ CHANGED
                   })}
                 </tr>
               );
             })}
         </tbody>
+
         <tfoot>
           <tr>
             <td colSpan={columns.length}>
               <button
-                onClick={() => setPageNumer((prev) => Math.max(prev - 1, 0))}
+                onClick={() =>
+                  setPageNumer((prev) => Math.max(prev - 1, 1)) // ✅ CHANGED
+                }
               >
                 Prev
               </button>
@@ -97,8 +129,8 @@ function Dashboard() {
               {Array.from({ length: numPages }).map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setPageNumer(index)}
-                  className={pageNumber === index ? "active" : ""}
+                  onClick={() => setPageNumer(index + 1)} // ✅ CHANGED
+                  className={pageNumber === index + 1 ? "active" : ""} // ✅ CHANGED
                 >
                   {index + 1}
                 </button>
@@ -106,7 +138,7 @@ function Dashboard() {
 
               <button
                 onClick={() =>
-                  setPageNumer((prev) => Math.min(prev + 1, numPages - 1))
+                  setPageNumer((prev) => Math.min(prev + 1, numPages)) // ✅ CHANGED
                 }
               >
                 Next

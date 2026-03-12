@@ -179,3 +179,7 @@ td{
   color:#000;
   cursor: pointer;
 }
+.postman-cont{
+  max-width: 1100px;
+  margin:0 auto;
+}
