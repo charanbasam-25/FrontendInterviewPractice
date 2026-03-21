@@ -12,6 +12,7 @@ import InputValuesDebThro from "./Tapas/InputValueDebThro.js";
 import LiveComments from "../src/LLD/LiveComments.tsx";
 import CalenderView from "./LLD/CalenderView.tsx";
 import PostManUI from "./LLD/PostManUI.tsx";
+import Players from "./LLD/PlayersDashboardList.tsx"
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         {/* <h1>Namste System Design</h1> */}
         {/* <InfiniteScroll /> */}
         {/* <ImageSlider/> */}
-        <Dashboard/>
+        {/* <Dashboard/> */}
         {/* <StopWatch/> */}
         {/* <ReddictComments/> */}
         {/* <AutoComplete/> */}
@@ -30,6 +31,7 @@ function App() {
         {/* <LiveComments/> */}
         {/* <CalenderView/> */}
         {/* <PostManUI /> */}
+        <Players/>
       </div>
     </>
   );
