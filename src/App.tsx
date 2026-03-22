@@ -13,6 +13,7 @@ import LiveComments from "../src/LLD/LiveComments.tsx";
 import CalenderView from "./LLD/CalenderView.tsx";
 import PostManUI from "./LLD/PostManUI.tsx";
 import Players from "./LLD/PlayersDashboardList.tsx"
+import JobBoard from "./LLD/JobBoard.tsx"
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
         {/* <LiveComments/> */}
         {/* <CalenderView/> */}
         {/* <PostManUI /> */}
-        <Players/>
+        {/* <Players/> */}
+        <JobBoard/>
+        
       </div>
     </>
   );
