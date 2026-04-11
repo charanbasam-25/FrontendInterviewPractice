@@ -12,9 +12,11 @@ import InputValuesDebThro from "./Tapas/InputValueDebThro.js";
 import LiveComments from "../src/LLD/LiveComments.tsx";
 import CalenderView from "./LLD/CalenderView.tsx";
 import PostManUI from "./LLD/PostManUI.tsx";
-import Players from "./LLD/PlayersDashboardList.tsx"
-import JobBoard from "./LLD/JobBoard.tsx"
-
+import Players from "./LLD/PlayersDashboardList.tsx";
+import JobBoard from "./LLD/JobBoard.tsx";
+import Dashboard2 from "./MCPratice/DashboardSorting.tsx";
+import NavRoutingTimer from "./MCPratice/NavRoutingTimer.tsx"
+import SnackBar from "./MCPratice/SnakBar.tsx";
 function App() {
   return (
     <>
@@ -33,8 +35,10 @@ function App() {
         {/* <CalenderView/> */}
         {/* <PostManUI /> */}
         {/* <Players/> */}
-        <JobBoard/>
-        
+        {/* <JobBoard/> */}
+        {/* <Dashboard2 /> */}
+        {/* <NavRoutingTimer/> */}
+        <SnackBar/>
       </div>
     </>
   );
