@@ -38,7 +38,7 @@ function App() {
         {/* <JobBoard/> */}
         {/* <Dashboard2 /> */}
         {/* <NavRoutingTimer/> */}
-        <SnackBar/>
+        {/* <SnackBar/> */}
       </div>
     </>
   );

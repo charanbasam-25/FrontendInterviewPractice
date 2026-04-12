@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtualisation</title>
+  </head>
+  <body>
+    <h1>Vistualisation</h1>
+    <div id="virtual-container"></div>
+  </body>
+  <script>
+    let ITEM_Height = 40;
+    let Visible_items = 10;
+    let totalItems = 10000;
+
+    let data = Array.from({ length: 10000 }, (_, i) => ({
+      id: i,
+      value: `${i} number`,
+    }));
+
+    let container = document.getElementById("virtual-container");
+    container.style.height = "400px";
+    container.style.overflowY = "auto";
+    let spacer = document.createElement("div");
+    spacer.style.height = ITEM_Height * totalItems + "px";
+    spacer.style.position = "relative";
+
+    container.appendChild(spacer);
+
+    function render() {
+      const scrollTop = container.scrollTop;
+      const startIndex = Math.floor(scrollTop / ITEM_Height);
+      const endIndex = startIndex + Visible_items + 5;
+
+      spacer.innerHTML = "";
+      for (let i = startIndex; i < endIndex; i++) {
+        let item = document.createElement("div");
+        item.style.position = "absolute";
+        item.className = "item";
+        item.style.top = i * ITEM_Height + "px";
+        item.innerText = data[i].value;
+        spacer.appendChild(item);
+      }
+    }
+    container.addEventListener("scroll", render);
+    render();
+  </script>
+</html>
